@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Balloon Order page - Welcome and choose a Balloon</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to our Balloon Shop App</h1>
+</header>
+<section>
+    <h2>Orders</h2>
+    <aside>
+        <ul>
+            <li th:each="order: ${allOrders}">
+                <th:block th:text="${order.getOrderId().toString()}" />
+                <th:block th:text="${order.getBalloonSize()}" />
+                <th:block th:text="${order.getBalloonColor()}" />
+                <th:block th:text="${order.getClientName()}" />
+                <th:block th:text="${order.getClientAddress()}" />
+            </li>
+        </ul>
+    </aside>
+    </ul>
+</section>
+
+</body>
+</html>
