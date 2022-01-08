@@ -28,4 +28,19 @@ public class BalloonServiceImpl implements BalloonService {
 
         return this.balloonRepository.findAllByNameOrDescription(text);
     }
+
+    @Override
+    public void save(Long id, String name, String description, Long manufacturerId) {
+        this.balloonRepository.saveBalloon(id, name, description, manufacturerId);
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.balloonRepository.deleteBalloon(id);
+    }
+
+    @Override
+    public Balloon getBalloonById(Long id) {
+        return this.balloonRepository.getBalloonById(id).orElseThrow();
+    }
 }

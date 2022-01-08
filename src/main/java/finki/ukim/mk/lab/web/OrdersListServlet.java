@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Orders List Servlet", urlPatterns = "/orders")
+@WebServlet(name = "Orders List Servlet", urlPatterns = "/servlet/orders")
 public class OrdersListServlet extends HttpServlet {
 
     private final OrderService orderService;
@@ -29,6 +29,6 @@ public class OrdersListServlet extends HttpServlet {
         WebContext context = new WebContext(req,resp,req.getServletContext());
         List<Order> allOrders = orderService.getAllOrders();
         context.setVariable("allOrders", allOrders);
-        this.springTemplateEngine.process("ordersList.html", context, resp.getWriter());
+        this.springTemplateEngine.process("user-orders.html", context, resp.getWriter());
     }
 }

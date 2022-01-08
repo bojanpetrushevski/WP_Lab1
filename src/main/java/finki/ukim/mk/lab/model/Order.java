@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.Random;
 
+@Data
 public class Order {
     String balloonColor;
     String balloonSize;
@@ -17,45 +18,5 @@ public class Order {
         this.clientName = clientName;
         this.clientAddress = clientAddress;
         this.orderId = new Random().nextInt(100);
-    }
-
-    public String getBalloonColor() {
-        return balloonColor;
-    }
-
-    public void setBalloonColor(String balloonColor) {
-        this.balloonColor = balloonColor;
-    }
-
-    public String getBalloonSize() {
-        return balloonSize;
-    }
-
-    public void setBalloonSize(String balloonSize) {
-        this.balloonSize = balloonSize;
-    }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public String getClientAddress() {
-        return clientAddress;
-    }
-
-    public void setClientAddress(String clientAddress) {
-        this.clientAddress = clientAddress;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
     }
 }

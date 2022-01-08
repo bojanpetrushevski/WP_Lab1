@@ -16,8 +16,28 @@
 </header>
 <section>
   <h2>Balloons</h2>
+  <div th:if="${hasError}">
+    <h5 class="text-center text-danger" th:text="${error}"></h5>
+  </div>
+
   <ul>
-    <li th:each="balloon: ${balloons}"><th:block th:text="${balloon.name}"/> (<th:block th:text="${balloon.description}"/>)</li>
+    <li th:each="balloon: ${balloons}"><th:block th:text="${balloon.name}"/> (<th:block th:text="${balloon.description}"/>)
+      <th:block th:text="${balloon.getManufacturer()} != null ? ${balloon.getManufacturer().getName()} : ''" />
+      <form th:action="@{'/balloons/edit-form/{id}' (id=${balloon.getId()})}"
+            th:method="GET">
+        <button type="submit"
+                class="btn btn-sm btn-danger">
+          <i class="fa fa-trash">Edit</i>
+        </button>
+      </form>
+      <form th:action="@{'/balloons/delete/{id}' (id=${balloon.getId()})}"
+            th:method="DELETE">
+        <button type="submit"
+                class="btn btn-sm btn-danger">
+          <i class="fa fa-trash">Delete</i>
+        </button>
+      </form>
+    </li>
   </ul>
 </section>
 <main>
@@ -31,5 +51,14 @@
   </form>
   <br/>
 </main>
+<div class="col mb-3">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <a href="/balloons/add-form" class="btn btn-block btn-dark add-product-btn">
+        Add new balloon
+      </a>
+    </div>
+  </div>
+</div>
 </body>
 </html>

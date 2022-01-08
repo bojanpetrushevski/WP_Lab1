@@ -5,6 +5,8 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebFilter
 public class BalloonColorFilter implements Filter {
@@ -21,8 +23,15 @@ public class BalloonColorFilter implements Filter {
 
         String path = request.getServletPath();
 
-        if (!"".equals(path) && !"/selectBalloon".equals(path) && !"/orders".equals(path) && balloonColor == null) {
-            response.sendRedirect("");
+        List<String> paths = List.of(
+            "/balloons", "/selectBalloon", "/orders", "/balloons/add-form", "/balloons/add", "balloons/edit-form", "balloons/delete"
+        );
+
+        if ("".equals(path)){
+            response.sendRedirect("/balloons");
+        }
+        else if (paths.stream().noneMatch(path::startsWith) && balloonColor == null) {
+            response.sendRedirect("/balloons");
         } else {
             filterChain.doFilter(servletRequest,servletResponse);
         }

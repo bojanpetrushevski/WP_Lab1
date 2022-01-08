@@ -14,11 +14,15 @@
 <header>
     <h1>Welcome to our Balloon Shop App</h1>
 </header>
+
+<div th:if="${hasError}">
+    <h5 class="text-center text-danger" th:text="${error}"></h5>
+</div>
 <section>
     <h2>Orders</h2>
     <aside>
         <ul>
-            <li th:each="order: ${allOrders}">
+            <li th:each="order: ${orders}">
                 <th:block th:text="${order.getOrderId().toString()}" />
                 <th:block th:text="${order.getBalloonSize()}" />
                 <th:block th:text="${order.getBalloonColor()}" />
